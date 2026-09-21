@@ -1,68 +1,87 @@
 // ==========================================================================
-// Pouya Salimi - Modern Portfolio Interactive Scripts
+// Pouya Salimi — Portfolio interactions (no framework dependencies)
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    const html = document.documentElement;
+
     // ----------------------------------------------------------------------
-    // 1. Dark / Light Theme Toggle & Persistence
+    // 1. Dark / Light theme toggle & persistence
     // ----------------------------------------------------------------------
     const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const themeIcon = document.getElementById('themeIcon');
-    const htmlElement = document.documentElement;
+    const iconSun = document.getElementById('themeIconSun');
+    const iconMoon = document.getElementById('themeIconMoon');
 
-    // Detect saved theme or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'dark'); // Default to dark
-
-    function setTheme(theme) {
-        htmlElement.setAttribute('data-theme', theme);
+    function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-
-        if (themeIcon) {
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-                themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeToggleBtn.setAttribute('aria-label', 'Switch to dark mode');
-            }
+        const isDark = theme === 'dark';
+        if (iconSun) iconSun.classList.toggle('hidden', !isDark);
+        if (iconMoon) iconMoon.classList.toggle('hidden', isDark);
+        if (themeToggleBtn) {
+            themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
         }
     }
 
-    setTheme(initialTheme);
+    applyTheme(html.getAttribute('data-theme') || 'dark');
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(nextTheme);
+            const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
         });
     }
 
     // ----------------------------------------------------------------------
-    // 2. Active Navbar Link Highlighting (IntersectionObserver)
+    // 2. Mobile menu
     // ----------------------------------------------------------------------
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link-custom');
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.add('hidden');
+        if (menuToggleBtn) menuToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    if (menuToggleBtn && mobileMenu) {
+        menuToggleBtn.addEventListener('click', () => {
+            const willOpen = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !willOpen);
+            menuToggleBtn.setAttribute('aria-expanded', String(willOpen));
+        });
+
+        mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMobileMenu));
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !menuToggleBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 3. Scrollspy — active nav link highlighting
+    // ----------------------------------------------------------------------
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
 
     function updateActiveNav() {
-        let currentSectionId = '';
-        const scrollPosition = window.scrollY + 180;
+        let currentId = '';
+        const scrollPosition = window.scrollY + 140;
 
-        sections.forEach(section => {
+        sections.forEach((section) => {
             const top = section.offsetTop;
-            const height = section.offsetHeight;
-            if (scrollPosition >= top && scrollPosition < top + height) {
-                currentSectionId = section.getAttribute('id');
+            if (scrollPosition >= top && scrollPosition < top + section.offsetHeight) {
+                currentId = section.getAttribute('id');
             }
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
+        navLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${currentId}`;
+            link.classList.toggle('text-ink', isActive);
+            link.classList.toggle('bg-elevated', isActive);
+            link.classList.toggle('text-ink-dim', !isActive);
         });
     }
 
@@ -70,48 +89,35 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveNav();
 
     // ----------------------------------------------------------------------
-    // 3. Mobile Navigation Auto-Collapse
-    // ----------------------------------------------------------------------
-    const navbarCollapse = document.getElementById('navbarNav');
-    const navbarToggler = document.querySelector('.navbar-toggler-custom');
-
-    if (navbarCollapse && navbarToggler) {
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navbarCollapse.classList.contains('show')) {
-                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse);
-                    bsCollapse.hide();
-                }
-            });
-        });
-
-        // Close on clicking outside mobile menu
-        document.addEventListener('click', (e) => {
-            if (navbarCollapse.classList.contains('show') && !navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse);
-                bsCollapse.hide();
-            }
-        });
-    }
-
-    // ----------------------------------------------------------------------
-    // 4. Copy Email to Clipboard
+    // 4. Copy email to clipboard
     // ----------------------------------------------------------------------
     const copyEmailBtn = document.getElementById('copyEmailBtn');
     const emailToCopy = 'pouya@salimi.info';
+    const copyLabel = copyEmailBtn ? copyEmailBtn.querySelector('.copy-label') : null;
+
+    function showCopied() {
+        if (!copyLabel) return;
+        const icon = copyEmailBtn.querySelector('.copy-icon');
+        if (icon) {
+            icon.outerHTML =
+                '<svg class="copy-icon h-3 w-3 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+        }
+        copyLabel.textContent = 'Copied!';
+        setTimeout(() => {
+            copyLabel.textContent = 'Copy';
+            const check = copyEmailBtn.querySelector('.copy-icon');
+            if (check) {
+                check.outerHTML =
+                    '<svg class="copy-icon h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+            }
+        }, 2200);
+    }
 
     if (copyEmailBtn) {
         copyEmailBtn.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(emailToCopy);
-                const originalContent = copyEmailBtn.innerHTML;
-                copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                copyEmailBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-
-                setTimeout(() => {
-                    copyEmailBtn.innerHTML = originalContent;
-                    copyEmailBtn.style.background = '';
-                }, 2200);
+                showCopied();
             } catch (err) {
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
@@ -120,11 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                setTimeout(() => {
-                    copyEmailBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
-                }, 2200);
+                showCopied();
             }
         });
     }
+
+    // ----------------------------------------------------------------------
+    // 5. Footer year
+    // ----------------------------------------------------------------------
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 });

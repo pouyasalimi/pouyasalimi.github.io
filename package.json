@@ -1,0 +1,17 @@
+{
+  "name": "pouya-salimi-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Minimalist portfolio of Pouya Salimi — Tailwind CSS, zero-build static site for GitHub Pages",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./css/tailwind.css --minify",
+    "build:dist": "node scripts/build-dist.mjs",
+    "build": "npm run build:css && npm run build:dist",
+    "watch": "tailwindcss -i ./src/input.css -o ./css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0",
+    "tailwindcss": "^3.4.10",
+    "terser": "^5.51.2"
+  }
+}

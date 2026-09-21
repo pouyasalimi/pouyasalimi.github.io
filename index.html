@@ -1,172 +1,593 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content="Pouya Salimi (پویا سلیمی) - Senior Software Engineer & Tech Lead with over 10 years of expertise in web systems, architecture, and team leadership."/>
-    <meta name="author" content="Pouya Salimi"/>
-    <title>Pouya Salimi - Senior Software Engineer & Tech Lead</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Pouya Salimi (پویا سلیمی) - Senior Software Engineer & Tech Lead with over 10 years of expertise in web systems, architecture, and team leadership." />
+    <meta name="author" content="Pouya Salimi" />
+    <meta name="theme-color" content="#09090b" />
+    <title>Pouya Salimi — Senior Software Engineer & Tech Lead</title>
 
     <!-- Favicon and App Icons -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png"/>
-    <link rel="manifest" href="assets/img/site.webmanifest"/>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
+    <link rel="manifest" href="assets/img/site.webmanifest" />
 
-    <!-- Google Fonts: Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <!-- Fonts: Inter (sans) + JetBrains Mono (accents) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Vazirmatn:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Tailwind CSS (pre-compiled, no runtime build needed) -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
-
-    <!-- Custom Modern Stylesheet -->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <!-- Restore theme before first paint to avoid flash -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
-<body id="page-top">
+
+<body id="page-top" class="relative min-h-screen overflow-x-hidden">
+
+    <!-- Ambient background glow -->
+    <div class="glow-orb left-1/2 top-[-12rem] h-[28rem] w-[36rem] -translate-x-1/2" aria-hidden="true"></div>
 
     <!-- ==========================================================================
-         Modern Floating Glass Navbar
+         Navbar
          ========================================================================== -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container">
-            <a class="navbar-brand navbar-brand-wrapper" href="#page-top">
-                <img class="brand-avatar" src="assets/img/1718967734185.jpeg" alt="Pouya Salimi"/>
-                <div class="d-flex flex-column">
-                    <span class="brand-title">Pouya Salimi</span>
-                </div>
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-line bg-page/80 backdrop-blur-md">
+        <nav class="mx-auto flex h-16 max-w-content items-center justify-between px-6">
+            <a href="#page-top" class="flex items-center gap-3">
+                <img class="h-8 w-8 rounded-full border border-line object-cover" src="assets/img/1718967734185.jpeg"
+                    alt="Pouya Salimi" />
+                <span class="text-sm font-semibold tracking-tight">Pouya Salimi</span>
+                <span class="hidden font-vazir text-xs text-ink-mute sm:inline" dir="rtl">پویا سلیمی</span>
             </a>
 
-            <!-- Mobile Controls & Theme Toggle -->
-            <div class="d-flex align-items-center gap-2 order-lg-3">
-                <button id="themeToggleBtn" class="btn-theme-toggle" type="button" aria-label="Toggle theme">
-                    <i id="themeIcon" class="fas fa-sun"></i>
+            <div class="flex items-center gap-2">
+                <div class="hidden items-center gap-1 md:flex">
+                    <a href="#about"
+                        class="nav-link rounded-md px-3 py-1.5 text-sm text-ink-dim transition-colors hover:text-ink">About</a>
+                    <a href="#experience"
+                        class="nav-link rounded-md px-3 py-1.5 text-sm text-ink-dim transition-colors hover:text-ink">Experience</a>
+                    <a href="#skills"
+                        class="nav-link rounded-md px-3 py-1.5 text-sm text-ink-dim transition-colors hover:text-ink">Skills</a>
+                    <a href="#education"
+                        class="nav-link rounded-md px-3 py-1.5 text-sm text-ink-dim transition-colors hover:text-ink">Education</a>
+                    <a href="#interests"
+                        class="nav-link rounded-md px-3 py-1.5 text-sm text-ink-dim transition-colors hover:text-ink">Interests</a>
+                    <a href="#contact"
+                        class="nav-link rounded-md px-3 py-1.5 text-sm text-ink-dim transition-colors hover:text-ink">Contact</a>
+                </div>
+
+                <span class="mx-1 hidden h-5 w-px bg-line md:block" aria-hidden="true"></span>
+
+                <button id="themeToggleBtn" type="button" aria-label="Toggle theme"
+                    class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-dim transition-colors hover:border-line-strong hover:text-ink">
+                    <svg id="themeIconSun" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                    </svg>
+                    <svg id="themeIconMoon" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
                 </button>
-                <button class="navbar-toggler navbar-toggler-custom d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
+                <button id="menuToggleBtn" type="button" aria-label="Toggle menu" aria-expanded="false"
+                    class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-dim transition-colors hover:border-line-strong hover:text-ink md:hidden">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" aria-hidden="true">
+                        <path d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
                 </button>
             </div>
+        </nav>
 
-            <!-- Navigation Links -->
-            <div class="collapse navbar-collapse order-lg-2 justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-lg-center gap-lg-1 me-lg-3">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom active" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#experience">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#education">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#interests">Interests</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="#contact">Contact</a>
-                    </li>
-                </ul>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden border-t border-line bg-page/95 px-6 py-4 backdrop-blur-md md:hidden">
+            <div class="flex flex-col gap-1">
+                <a href="#about"
+                    class="nav-link rounded-md px-3 py-2 text-sm text-ink-dim transition-colors hover:bg-elevated hover:text-ink">About</a>
+                <a href="#experience"
+                    class="nav-link rounded-md px-3 py-2 text-sm text-ink-dim transition-colors hover:bg-elevated hover:text-ink">Experience</a>
+                <a href="#skills"
+                    class="nav-link rounded-md px-3 py-2 text-sm text-ink-dim transition-colors hover:bg-elevated hover:text-ink">Skills</a>
+                <a href="#education"
+                    class="nav-link rounded-md px-3 py-2 text-sm text-ink-dim transition-colors hover:bg-elevated hover:text-ink">Education</a>
+                <a href="#interests"
+                    class="nav-link rounded-md px-3 py-2 text-sm text-ink-dim transition-colors hover:bg-elevated hover:text-ink">Interests</a>
+                <a href="#contact"
+                    class="nav-link rounded-md px-3 py-2 text-sm text-ink-dim transition-colors hover:bg-elevated hover:text-ink">Contact</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <main>
+
+    <main class="relative pt-16">
         <!-- ==========================================================================
-             Hero / About Section
+             Hero / About
              ========================================================================== -->
-        <section class="hero-section" id="about">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <div class="status-badge mb-3">
-                            <span class="status-dot"></span>
-                            <span>Open to Opportunities · Senior Software Engineer</span>
+        <section id="about" class="relative scroll-mt-20 px-6 pb-24 pt-20 md:pt-28">
+            <div class="mx-auto max-w-content">
+                <div class="grid items-center gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+                    <div>
+                        <div
+                            class="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-ink-dim">
+                            <span class="relative flex h-2 w-2">
+                                <span
+                                    class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+                                <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                            </span>
+                            Open to opportunities
                         </div>
-                        <h1 class="hero-title">
-                            Hi, I'm <span class="gradient-text">Pouya Salimi</span>
-                            <span class="persian-badge" dir="rtl">(پویا سلیمی)</span>
+
+                        <h1 class="text-4xl font-bold tracking-tight md:text-6xl">
+                            Hi, I'm <span class="text-gradient">Pouya Salimi</span>
                         </h1>
-                        <div class="hero-subtitle">
-                            Senior Software Engineer & Tech Lead
-                        </div>
-                        <p class="hero-description">
-                            Experienced Software Engineer with over 10 years of expertise in web design, distributed systems, and modern architecture. Skilled in integrating business objectives into resilient technical solutions, mentoring high-performing engineering teams, and executing complex software projects.
+
+                        <p class="mt-4 font-mono text-sm text-ink-mute md:text-base">
+                            $ whoami <span class="text-accent">→</span> Senior Software Engineer &amp; Tech Lead
                         </p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <a href="#contact" class="btn btn-primary-gradient">
-                                <i class="fas fa-paper-plane"></i> Get in Touch
+
+                        <p class="mt-6 max-w-xl text-base leading-relaxed text-ink-dim md:text-lg">
+                            Over 15 years of expertise in web design, distributed systems, and modern architecture.
+                            Skilled in turning business objectives into resilient technical solutions, mentoring
+                            high-performing engineering teams, and executing complex software projects.
+                        </p>
+
+                        <div class="mt-8 flex flex-wrap items-center gap-3">
+                            <a href="#contact"
+                                class="rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-[color:var(--bg)] transition-opacity hover:opacity-85">
+                                Get in touch
                             </a>
-                            <a href="#experience" class="btn btn-secondary-glass">
-                                <i class="fas fa-briefcase"></i> View Career History
+                            <a href="#experience"
+                                class="rounded-lg border border-line px-5 py-2.5 text-sm font-medium text-ink-dim transition-colors hover:border-line-strong hover:text-ink">
+                                View career history
+                            </a>
+                            <a href="assets/pouya-salimi-res-v2.pdf" download="Pouya-Salimi-Resume.pdf"
+                                class="inline-flex items-center gap-2 rounded-lg border border-line px-5 py-2.5 text-sm font-medium text-ink-dim transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2.25a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Zm-9 13.5a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z" />
+                                </svg>
+                                Download resume
                             </a>
                         </div>
-                        <div class="social-group">
-                            <a class="social-link-btn" href="https://linkedin.com/in/pouyasalimi" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
+
+                        <!-- Socials -->
+                        <div class="mt-8 flex items-center gap-2">
+                            <a href="https://linkedin.com/in/pouyasalimi" target="_blank" rel="noopener noreferrer"
+                                title="LinkedIn" aria-label="LinkedIn"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                                </svg>
                             </a>
-                            <a class="social-link-btn" href="https://github.com/pouyasalimi" target="_blank" rel="noopener noreferrer" title="GitHub">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/pouyasalimi" target="_blank" rel="noopener noreferrer"
+                                title="GitHub" aria-label="GitHub"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .3z" />
+                                </svg>
                             </a>
-                            <a class="social-link-btn" href="https://twitter.com/pouya" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
-                                <i class="fab fa-x-twitter"></i>
+                            <a href="https://twitter.com/pouya" target="_blank" rel="noopener noreferrer"
+                                title="X (Twitter)" aria-label="X (Twitter)"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z" />
+                                </svg>
                             </a>
-                            <a class="social-link-btn" href="mailto:pouya@salimi.info" title="Email Pouya">
-                                <i class="fas fa-envelope"></i>
+                            <a href="mailto:salimipouya@outlook.com" title="Email" aria-label="Email"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <path d="m22 7-10 6L2 7" />
+                                </svg>
                             </a>
                         </div>
                     </div>
 
-                    <div class="col-lg-5 mt-5 mt-lg-0">
-                        <div class="hero-photo-wrapper">
-                            <div class="floating-stat-badge badge-pos-2">
-                                <div class="stat-icon-wrapper">
-                                    <i class="fas fa-cubes"></i>
-                                </div>
-                                <div>
-                                    <div class="fw-bold">Architecture</div>
-                                    <span class="text-muted" style="font-size: 0.75rem;">Scalable Systems</span>
-                                </div>
+                    <!-- Portrait -->
+                    <div class="relative mx-auto w-full max-w-sm">
+                        <div class="card overflow-hidden rounded-2xl p-2">
+                            <img class="aspect-square w-full rounded-xl object-cover"
+                                src="assets/img/1718967734185.jpeg" alt="Pouya Salimi — پویا سلیمی" />
+                        </div>
+                        <div class="card absolute -bottom-5 -left-5 flex items-center gap-3 rounded-lg px-4 py-3">
+                            <span
+                                class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-md shadow-indigo-500/25 ring-1 ring-inset ring-white/20">
+                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M12.378 1.602a.75.75 0 0 0-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03ZM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 0 0 .372-.648V7.93ZM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 0 0 .372.648l8.628 5.033Z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <div class="text-sm font-semibold leading-tight">Architecture</div>
+                                <div class="text-xs text-ink-mute">Scalable systems</div>
                             </div>
-
-                            <div class="hero-photo-frame">
-                                <img class="hero-img" src="assets/img/1718967734185.jpeg" alt="Pouya Salimi - پویا سلیمی"/>
-                            </div>
-
-                            <div class="floating-stat-badge badge-pos-1">
-                                <div class="stat-icon-wrapper">
-                                    <i class="fas fa-users-gear"></i>
-                                </div>
-                                <div>
-                                    <div class="fw-bold">Tech Leadership</div>
-                                    <span class="text-muted" style="font-size: 0.75rem;">Cross-Functional Teams</span>
-                                </div>
+                        </div>
+                        <div class="card absolute -top-5 -right-5 flex items-center gap-3 rounded-lg px-4 py-3">
+                            <span
+                                class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 text-white shadow-md shadow-cyan-500/25 ring-1 ring-inset ring-white/20">
+                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" />
+                                    <path
+                                        d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <div class="text-sm font-semibold leading-tight">Tech Leadership</div>
+                                <div class="text-xs text-ink-mute">Cross-functional teams</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quick Stats Banner -->
-                <div class="stats-banner">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-6 col-md-4 stat-item">
-                            <div class="stat-number gradient-text">10+</div>
-                            <div class="stat-label">Years of Industry Experience</div>
+                <!-- Stats -->
+                <div class="card mt-24 grid grid-cols-1 divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                    <div class="px-8 py-8 text-center">
+                        <div class="text-gradient text-4xl font-bold">15+</div>
+                        <div class="mt-2 text-sm text-ink-mute">Years of industry experience</div>
+                    </div>
+                    <div class="px-8 py-8 text-center">
+                        <div class="text-gradient text-4xl font-bold">+10</div>
+                        <div class="mt-2 text-sm text-ink-mute">Engineers mentored &amp; led</div>
+                    </div>
+                    <div class="px-8 py-8 text-center">
+                        <div class="text-gradient text-4xl font-bold">100%</div>
+                        <div class="mt-2 text-sm text-ink-mute">Scalable, clean &amp; testable code</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             Experience — Timeline
+             ========================================================================== -->
+        <section id="experience" class="scroll-mt-20 border-t border-line px-6 py-24">
+            <div class="mx-auto max-w-content">
+                <div class="eyebrow">Career Journey</div>
+                <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Work Experience</h2>
+                <p class="mt-3 max-w-2xl text-ink-dim">
+                    Proven track record of designing high-scale architectures, leading agile teams, and deploying
+                    mission-critical systems.
+                </p>
+
+                <div
+                    class="relative mt-12 space-y-8 before:absolute before:left-[7px] before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-line">
+                    <!-- EWMAteam -->
+                    <article class="relative pl-8">
+                        <span
+                            class="absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 border-accent bg-page"></span>
+                        <div class="card card-hover p-6 md:p-8">
+                            <div class="flex flex-col items-start justify-between gap-2 md:flex-row">
+                                <div>
+                                    <h3 class="text-lg font-semibold tracking-tight">Senior Software Engineer</h3>
+                                    <p class="mt-0.5 text-sm text-accent">EWMAteam</p>
+                                </div>
+                                <p class="font-mono text-xs text-ink-mute">May 2022 – Jun 2024 · Turkey · Full-time</p>
+                            </div>
+                            <ul class="mt-5 space-y-2 text-sm leading-relaxed text-ink-dim md:columns-2 md:gap-8">
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Led the design
+                                    and implementation of scalable and high-performance software architectures.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Provided
+                                    technical guidance and mentorship to a team of +4 developers.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Conducted
+                                    regular code reviews, ensuring adherence to coding standards and industry best
+                                    practices.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Assigned tasks
+                                    based on team members' strengths and project requirements, ensuring optimal resource
+                                    utilization.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Fostered a
+                                    collaborative team culture, encouraging open communication and knowledge sharing.
+                                </li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Organized and
+                                    led regular team meetings to discuss progress, challenges, and solutions.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Enforced coding
+                                    standards and conducted regular training sessions to enhance code quality.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Provided deep
+                                    expertise in debugging and troubleshooting, contributing to rapid problem
+                                    resolution.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Ensured
+                                    comprehensive documentation for code, technical specifications, and user manuals.
+                                </li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Made informed
+                                    architectural decisions to address technical challenges and guarantee project
+                                    success.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Led a
+                                    cross-functional team, fostering close collaboration between development, QA, and
+                                    product management.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="tag">Software Architecture</span>
+                                <span class="tag">Team Mentorship</span>
+                                <span class="tag">Code Review</span>
+                                <span class="tag">Cross-Functional</span>
+                                <span class="tag">Performance Optimization</span>
+                            </div>
                         </div>
-                        <div class="col-6 col-md-4 stat-item">
-                            <div class="stat-number gradient-text">+4</div>
-                            <div class="stat-label">Engineers Mentored & Led</div>
+                    </article>
+
+                    <!-- Mosbatesabz -->
+                    <article class="relative pl-8">
+                        <span
+                            class="absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 border-accent bg-page"></span>
+                        <div class="card card-hover p-6 md:p-8">
+                            <div class="flex flex-col items-start justify-between gap-2 md:flex-row">
+                                <div>
+                                    <h3 class="text-lg font-semibold tracking-tight">Software Engineer</h3>
+                                    <p class="mt-0.5 text-sm text-accent">Mosbatesabz Online Pharmacy</p>
+                                </div>
+                                <p class="font-mono text-xs text-ink-mute">Nov 2021 – Apr 2022</p>
+                            </div>
+                            <ul class="mt-5 space-y-2 text-sm leading-relaxed text-ink-dim">
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Defined
+                                    parameters for technical development tasks, including API and data acquisitions.
+                                </li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Organized system
+                                    infrastructure documentation and operating procedures to enhance performance.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Oversaw project
+                                    budgets, milestones, and technical delivery performance.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Held final
+                                    responsibility for architecture and design of the company's main platform and
+                                    application.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="tag">API Acquisition</span>
+                                <span class="tag">Infrastructure</span>
+                                <span class="tag">E-Commerce</span>
+                                <span class="tag">Platform Architecture</span>
+                            </div>
                         </div>
-                        <div class="col-12 col-md-4 stat-item">
-                            <div class="stat-number gradient-text">100%</div>
-                            <div class="stat-label">Scalable, Clean & Testable Code</div>
+                    </article>
+
+                    <!-- Avalpardakht -->
+                    <article class="relative pl-8">
+                        <span
+                            class="absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 border-accent bg-page"></span>
+                        <div class="card card-hover p-6 md:p-8">
+                            <div class="flex flex-col items-start justify-between gap-2 md:flex-row">
+                                <div>
+                                    <h3 class="text-lg font-semibold tracking-tight">Technical Lead</h3>
+                                    <p class="mt-0.5 text-sm text-accent">Avalpardakht.com</p>
+                                </div>
+                                <p class="font-mono text-xs text-ink-mute">Apr 2021 – Nov 2021</p>
+                            </div>
+                            <ul class="mt-5 space-y-2 text-sm leading-relaxed text-ink-dim">
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Improved system
+                                    reliability and feature velocity by modernizing backend infrastructure.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Implemented and
+                                    monitored required support structures for stable, zero-downtime application
+                                    rollouts.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Dockerized the
+                                    main company project for streamlined local development and CI consistency.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Defined
+                                    parameters for technical development tasks, including secure payment API and data
+                                    pipelines.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Organized system
+                                    infrastructure documentation and operating procedures to elevate overall system
+                                    performance.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="tag">Tech Lead</span>
+                                <span class="tag">Docker</span>
+                                <span class="tag">Fintech Infrastructure</span>
+                                <span class="tag">API Security</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Doctoreto — Tech Lead -->
+                    <article class="relative pl-8">
+                        <span
+                            class="absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 border-accent bg-page"></span>
+                        <div class="card card-hover p-6 md:p-8">
+                            <div class="flex flex-col items-start justify-between gap-2 md:flex-row">
+                                <div>
+                                    <h3 class="text-lg font-semibold tracking-tight">Technical Lead</h3>
+                                    <p class="mt-0.5 text-sm text-accent">Doctoreto</p>
+                                </div>
+                                <p class="font-mono text-xs text-ink-mute">May 2020 – Mar 2021</p>
+                            </div>
+                            <ul class="mt-5 space-y-2 text-sm leading-relaxed text-ink-dim">
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Prepared
+                                    detailed reports on project updates, velocity, and proactively identified technical
+                                    bottlenecks.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Minimized
+                                    resource and time losses by addressing developer challenges and production hurdles
+                                    directly.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Participated in
+                                    the strategic implementation of new features and provided technical solutions for
+                                    business growth.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Handled
+                                    mission-critical service stabilization and high-priority bug fixes.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="tag">Healthtech</span>
+                                <span class="tag">Team Leadership</span>
+                                <span class="tag">Service Stabilization</span>
+                                <span class="tag">Agile Delivery</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Doctoreto — Backend Engineer -->
+                    <article class="relative pl-8">
+                        <span
+                            class="absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 border-accent bg-page"></span>
+                        <div class="card card-hover p-6 md:p-8">
+                            <div class="flex flex-col items-start justify-between gap-2 md:flex-row">
+                                <div>
+                                    <h3 class="text-lg font-semibold tracking-tight">Backend Software Engineer</h3>
+                                    <p class="mt-0.5 text-sm text-accent">Doctoreto</p>
+                                </div>
+                                <p class="font-mono text-xs text-ink-mute">Jul 2019 – Apr 2020</p>
+                            </div>
+                            <ul class="mt-5 space-y-2 text-sm leading-relaxed text-ink-dim">
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Planned and
+                                    engineered high-concurrency website and platform components using JSON REST APIs and
+                                    Laravel backend.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Developed
+                                    performant front-end web interfaces leveraging WordPress and custom templates.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Consulted with
+                                    marketing and product departments to translate organizational requirements into
+                                    code.</li>
+                                <li class="flex gap-2"><span
+                                        class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-mute"></span>Discussed site
+                                    and application requirements directly with clients to produce actionable technical
+                                    plans.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="tag">Laravel</span>
+                                <span class="tag">PHP</span>
+                                <span class="tag">REST APIs</span>
+                                <span class="tag">WordPress</span>
+                                <span class="tag">MySQL</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             Skills & Technologies
+             ========================================================================== -->
+        <section id="skills" class="scroll-mt-20 border-t border-line px-6 py-24">
+            <div class="mx-auto max-w-content">
+                <div class="eyebrow">Capabilities</div>
+                <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Skills &amp; Technologies</h2>
+                <p class="mt-3 max-w-2xl text-ink-dim">
+                    A robust toolkit cultivated through years of delivering scalable, maintainable, and high-impact web
+                    software.
+                </p>
+
+                <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Architecture & Process -->
+                    <div class="card card-hover p-6 md:col-span-2 lg:col-span-1">
+                        <h3 class="text-base font-semibold tracking-tight">Architecture &amp; Process</h3>
+                        <p class="mt-1 text-sm text-ink-mute">Engineering methodologies ensuring high resilience,
+                            testability, and velocity.</p>
+                        <ul class="mt-5 space-y-3 text-sm leading-relaxed text-ink-dim">
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                                <span><strong class="text-ink">API Design:</strong> RESTful APIs, contract testing &amp;
+                                    seamless documentation</span>
+                            </li>
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                                <span><strong class="text-ink">Clean Architecture:</strong> SOLID principles, separation
+                                    of concerns &amp; modularity</span>
+                            </li>
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                                <span><strong class="text-ink">Testing:</strong> Unit &amp; feature test suites for
+                                    stable deployments</span>
+                            </li>
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                                <span><strong class="text-ink">Git Flow &amp; CI/CD:</strong> Structured branches, pull
+                                    request reviews &amp; staging</span>
+                            </li>
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                                <span><strong class="text-ink">Agile &amp; Scrum:</strong> Cross-functional
+                                    collaboration, sprints &amp; stakeholder alignment</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Languages & Frameworks -->
+                    <div class="card card-hover p-6">
+                        <h3 class="text-base font-semibold tracking-tight">Languages &amp; Frameworks</h3>
+                        <p class="mt-1 text-sm text-ink-mute">Core languages, backend frameworks, and runtime
+                            environments.</p>
+                        <div class="mt-5 flex flex-wrap gap-2">
+                            <span class="tag">PHP</span>
+                            <span class="tag">Laravel</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">WordPress</span>
+                        </div>
+                    </div>
+
+                    <!-- DevOps & Tooling -->
+                    <div class="card card-hover p-6">
+                        <h3 class="text-base font-semibold tracking-tight">DevOps &amp; Tooling</h3>
+                        <p class="mt-1 text-sm text-ink-mute">Modern developer workflow, containerization, and version
+                            control tooling.</p>
+                        <div class="mt-5 flex flex-wrap gap-2">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Git &amp; GitHub</span>
+                            <span class="tag">npm</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Figma</span>
+                            <span class="tag">MySQL / Relational DBs</span>
                         </div>
                     </div>
                 </div>
@@ -174,387 +595,160 @@
         </section>
 
         <!-- ==========================================================================
-             Experience Section (Modern Vertical Timeline)
+             Education
              ========================================================================== -->
-        <section class="section-wrapper" id="experience">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Career Journey</span>
-                    <h2 class="section-title">Work Experience</h2>
-                    <p class="section-subtitle">
-                        Proven track record of designing high-scale architectures, leading agile teams, and deploying mission-critical systems.
+        <section id="education" class="scroll-mt-20 border-t border-line px-6 py-24">
+            <div class="mx-auto max-w-content">
+                <div class="eyebrow">Academic Background</div>
+                <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Education</h2>
+
+                <div class="card card-hover mt-12 p-6 md:p-8">
+                    <div class="flex flex-col items-start justify-between gap-3 md:flex-row">
+                        <div>
+                            <h3 class="text-lg font-semibold tracking-tight">B.Sc. in Computer Engineering</h3>
+                            <p class="mt-0.5 text-sm text-accent">Islamic Azad University</p>
+                        </div>
+                        <p class="font-mono text-xs text-ink-mute">2008 – 2012</p>
+                    </div>
+                    <p class="mt-5 text-sm leading-relaxed text-ink-dim">
+                        Comprehensive study of computer systems, software engineering principles, algorithms, data
+                        structures, and computer architecture.
                     </p>
                 </div>
+            </div>
+        </section>
 
-                <div class="timeline-container">
-                    <!-- Experience Item 1 -->
-                    <div class="timeline-entry">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-2">
-                                <div>
-                                    <h3 class="exp-role-title">Senior Software Engineer</h3>
-                                    <div class="exp-company">EWMAteam</div>
-                                </div>
-                                <div class="exp-meta mt-2 mt-md-0">
-                                    <span class="exp-meta-badge exp-meta-date">
-                                        <i class="far fa-calendar-alt"></i> May 2022 - Jun 2024
-                                    </span>
-                                    <span class="exp-meta-badge">
-                                        <i class="fas fa-map-marker-alt"></i> Turkey · Full-time
-                                    </span>
-                                </div>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Led the design and implementation of scalable and high-performance software architectures.</li>
-                                <li>Provided technical guidance and mentorship to a team of +4 developers.</li>
-                                <li>Conducted regular code reviews, ensuring adherence to coding standards and industry best practices.</li>
-                                <li>Assigned tasks based on team members' strengths and project requirements, ensuring optimal resource utilization.</li>
-                                <li>Fostered a collaborative team culture, encouraging open communication and knowledge sharing.</li>
-                                <li>Organized and led regular team meetings to discuss progress, challenges, and solutions.</li>
-                                <li>Enforced coding standards and conducted regular training sessions to enhance code quality.</li>
-                                <li>Provided deep expertise in debugging and troubleshooting, contributing to rapid problem resolution.</li>
-                                <li>Ensured comprehensive documentation for code, technical specifications, and user manuals.</li>
-                                <li>Made informed architectural decisions to address technical challenges and guarantee project success.</li>
-                                <li>Led a cross-functional team, fostering close collaboration between development, QA, and product management.</li>
-                            </ul>
-                            <div>
-                                <span class="exp-tag-pill">Software Architecture</span>
-                                <span class="exp-tag-pill">Team Mentorship</span>
-                                <span class="exp-tag-pill">Code Review</span>
-                                <span class="exp-tag-pill">Cross-Functional</span>
-                                <span class="exp-tag-pill">Performance Optimization</span>
-                            </div>
+        <!-- ==========================================================================
+             Interests
+             ========================================================================== -->
+        <section id="interests" class="scroll-mt-20 border-t border-line px-6 py-24">
+            <div class="mx-auto max-w-content">
+                <div class="eyebrow">Passions &amp; Hobbies</div>
+                <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Beyond the Terminal</h2>
+                <p class="mt-3 max-w-2xl text-ink-dim">
+                    What keeps me curious, motivated, and inspired outside of everyday software engineering.
+                </p>
+
+                <div class="mt-12 grid gap-6 md:grid-cols-2">
+                    <div class="card card-hover p-6 md:p-8">
+                        <div class="flex items-center gap-4">
+                            <span
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2.25 6a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V6Zm3.97.97a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06l-2.25 2.25a.75.75 0 0 1-1.06-1.06l1.72-1.72-1.72-1.72a.75.75 0 0 1 0-1.06Zm4.28 4.28a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z" />
+                                </svg>
+                            </span>
+                            <h3 class="text-base font-semibold tracking-tight">Tech Tinkerer</h3>
                         </div>
+                        <p class="mt-4 text-sm leading-relaxed text-ink-dim">
+                            Tech tinkerer at heart. I love taking apart gadgets and discovering how they tick. Both the
+                            physical
+                            mechanics and the electrical magic that make hardware work fascinate me, inspiring a deeper
+                            appreciation
+                            for the interplay between hardware and code.
+                        </p>
                     </div>
 
-                    <!-- Experience Item 2 -->
-                    <div class="timeline-entry">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-2">
-                                <div>
-                                    <h3 class="exp-role-title">Software Engineer</h3>
-                                    <div class="exp-company">Mosbatesabz Online Pharmacy</div>
-                                </div>
-                                <div class="exp-meta mt-2 mt-md-0">
-                                    <span class="exp-meta-badge exp-meta-date">
-                                        <i class="far fa-calendar-alt"></i> Nov 2021 - Apr 2022
-                                    </span>
-                                </div>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Defined parameters for technical development tasks, including API and data acquisitions.</li>
-                                <li>Organized system infrastructure documentation and operating procedures to enhance performance.</li>
-                                <li>Oversaw project budgets, milestones, and technical delivery performance.</li>
-                                <li>Held final responsibility for architecture and design of the company's main platform and application.</li>
-                            </ul>
+                    <div class="card card-hover p-6 md:p-8">
+                        <div class="flex items-center gap-4">
+                            <span
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+                                </svg>
+                            </span>
                             <div>
-                                <span class="exp-tag-pill">API Acquisition</span>
-                                <span class="exp-tag-pill">Infrastructure</span>
-                                <span class="exp-tag-pill">E-Commerce</span>
-                                <span class="exp-tag-pill">Platform Architecture</span>
+                                <h3 class="text-base font-semibold tracking-tight">Knowledge Adventurer</h3>
+                                <span
+                                    class="mt-1 inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-accent">
+                                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M9 4.5a.75.75 0 0 1 .735.592l.636 3.067a1.5 1.5 0 0 0 1.17 1.17l3.067.636a.75.75 0 0 1 0 1.47l-3.067.636a1.5 1.5 0 0 0-1.17 1.17l-.636 3.067a.75.75 0 0 1-1.47 0l-.636-3.067a1.5 1.5 0 0 0-1.17-1.17l-3.067-.636a.75.75 0 0 1 0-1.47l3.067-.636a1.5 1.5 0 0 0 1.17-1.17l.636-3.067A.75.75 0 0 1 9 4.5ZM18 2.25a.375.375 0 0 1 .368.296l.192 1.052a.75.75 0 0 0 .592.592l1.052.192a.375.375 0 0 1 0 .736l-1.052.192a.75.75 0 0 0-.592.592l-.192 1.052a.375.375 0 0 1-.736 0l-.192-1.052a.75.75 0 0 0-.592-.592l-1.052-.192a.375.375 0 0 1 0-.736l1.052-.192a.75.75 0 0 0 .592-.592l.192-1.052A.375.375 0 0 1 18 2.25Z" />
+                                    </svg>
+                                    AI Specialist &amp; Follower
+                                </span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Experience Item 3 -->
-                    <div class="timeline-entry">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-2">
-                                <div>
-                                    <h3 class="exp-role-title">Technical Lead</h3>
-                                    <div class="exp-company">Avalpardakht.com</div>
-                                </div>
-                                <div class="exp-meta mt-2 mt-md-0">
-                                    <span class="exp-meta-badge exp-meta-date">
-                                        <i class="far fa-calendar-alt"></i> Apr 2021 - Nov 2021
-                                    </span>
-                                </div>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Improved system reliability and feature velocity by modernizing backend infrastructure.</li>
-                                <li>Implemented and monitored required support structures for stable, zero-downtime application rollouts.</li>
-                                <li>Dockerized the main company project for streamlined local development and CI consistency.</li>
-                                <li>Defined parameters for technical development tasks, including secure payment API and data pipelines.</li>
-                                <li>Organized system infrastructure documentation and operating procedures to elevate overall system performance.</li>
-                            </ul>
-                            <div>
-                                <span class="exp-tag-pill">Tech Lead</span>
-                                <span class="exp-tag-pill">Docker</span>
-                                <span class="exp-tag-pill">Fintech Infrastructure</span>
-                                <span class="exp-tag-pill">API Security</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Experience Item 4 -->
-                    <div class="timeline-entry">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-2">
-                                <div>
-                                    <h3 class="exp-role-title">Team Lead</h3>
-                                    <div class="exp-company">Doctoreto</div>
-                                </div>
-                                <div class="exp-meta mt-2 mt-md-0">
-                                    <span class="exp-meta-badge exp-meta-date">
-                                        <i class="far fa-calendar-alt"></i> May 2020 - Mar 2021
-                                    </span>
-                                </div>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Prepared detailed reports on project updates, velocity, and proactively identified technical bottlenecks.</li>
-                                <li>Minimized resource and time losses by addressing developer challenges and production hurdles directly.</li>
-                                <li>Participated in the strategic implementation of new features and provided technical solutions for business growth.</li>
-                                <li>Handled mission-critical service stabilization and high-priority bug fixes.</li>
-                            </ul>
-                            <div>
-                                <span class="exp-tag-pill">Healthtech</span>
-                                <span class="exp-tag-pill">Team Leadership</span>
-                                <span class="exp-tag-pill">Service Stabilization</span>
-                                <span class="exp-tag-pill">Agile Delivery</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Experience Item 5 -->
-                    <div class="timeline-entry">
-                        <div class="timeline-node"></div>
-                        <div class="glass-card">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-2">
-                                <div>
-                                    <h3 class="exp-role-title">Backend Software Engineer</h3>
-                                    <div class="exp-company">Doctoreto</div>
-                                </div>
-                                <div class="exp-meta mt-2 mt-md-0">
-                                    <span class="exp-meta-badge exp-meta-date">
-                                        <i class="far fa-calendar-alt"></i> Jul 2019 - Apr 2020
-                                    </span>
-                                </div>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Planned and engineered high-concurrency website and platform components using JSON REST APIs and Laravel backend.</li>
-                                <li>Developed performant front-end web interfaces leveraging WordPress and custom templates.</li>
-                                <li>Consulted with marketing and product departments to translate organizational requirements into code.</li>
-                                <li>Discussed site and application requirements directly with clients to produce actionable technical plans.</li>
-                            </ul>
-                            <div>
-                                <span class="exp-tag-pill">Laravel</span>
-                                <span class="exp-tag-pill">PHP</span>
-                                <span class="exp-tag-pill">REST APIs</span>
-                                <span class="exp-tag-pill">WordPress</span>
-                                <span class="exp-tag-pill">MySQL</span>
-                            </div>
-                        </div>
+                        <p class="mt-4 text-sm leading-relaxed text-ink-dim">
+                            Lifelong learner on a continuous quest for new skills and deep understanding. Whether diving
+                            into rigorous
+                            technical research, or exploring the frontiers of artificial intelligence, data science, and
+                            decentralized
+                            architectures, I am constantly fueling my curiosity.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ==========================================================================
-             Skills & Competencies Section
+             Contact / CTA
              ========================================================================== -->
-        <section class="section-wrapper" id="skills">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Capabilities</span>
-                    <h2 class="section-title">Skills & Technologies</h2>
-                    <p class="section-subtitle">
-                        A robust toolkit cultivated through years of delivering scalable, maintainable, and high-impact web software.
-                    </p>
-                </div>
-
-                <div class="row g-4">
-                    <!-- Skill Card 1: Core Technologies -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="glass-card skill-category-card">
-                            <div class="skill-category-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="h5 mb-2">Languages & Frameworks</h3>
-                            <p class="text-muted small mb-3">Core programming languages, backend frameworks, and runtime environments.</p>
-                            <div class="skill-items-grid">
-                                <span class="skill-chip"><i class="fab fa-php text-primary"></i> PHP</span>
-                                <span class="skill-chip"><i class="fab fa-laravel text-danger"></i> Laravel</span>
-                                <span class="skill-chip"><i class="fab fa-python text-warning"></i> Python</span>
-                                <span class="skill-chip"><i class="fab fa-js-square text-warning"></i> JavaScript</span>
-                                <span class="skill-chip"><i class="fab fa-node-js text-success"></i> Node.js</span>
-                                <span class="skill-chip"><i class="fab fa-html5 text-danger"></i> HTML5</span>
-                                <span class="skill-chip"><i class="fab fa-css3-alt text-info"></i> CSS3</span>
-                                <span class="skill-chip"><i class="fab fa-wordpress text-primary"></i> WordPress</span>
-                            </div>
-                        </div>
+        <section id="contact" class="scroll-mt-20 border-t border-line px-6 py-24">
+            <div class="mx-auto max-w-content">
+                <div class="card relative overflow-hidden p-8 text-center md:p-14">
+                    <div class="glow-orb left-1/2 top-[-8rem] h-[20rem] w-[28rem] -translate-x-1/2" aria-hidden="true">
                     </div>
 
-                    <!-- Skill Card 2: DevOps & Tooling -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="glass-card skill-category-card">
-                            <div class="skill-category-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <h3 class="h5 mb-2">DevOps & Tooling</h3>
-                            <p class="text-muted small mb-3">Modern developer workflow, containerization, and version control tooling.</p>
-                            <div class="skill-items-grid">
-                                <span class="skill-chip"><i class="fab fa-docker text-primary"></i> Docker</span>
-                                <span class="skill-chip"><i class="fab fa-git-alt text-danger"></i> Git & GitHub</span>
-                                <span class="skill-chip"><i class="fab fa-npm text-danger"></i> npm</span>
-                                <span class="skill-chip"><i class="fab fa-linux text-warning"></i> Linux</span>
-                                <span class="skill-chip"><i class="fab fa-figma text-purple" style="color: #a855f7;"></i> Figma</span>
-                                <span class="skill-chip"><i class="fas fa-database text-info"></i> MySQL / Relational DBs</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="relative">
+                        <div class="eyebrow justify-center">Get in Touch</div>
+                        <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Let's build something exceptional</h2>
+                        <p class="mx-auto mt-4 max-w-xl text-ink-dim">
+                            Whether you are looking for a Senior Software Engineer to lead an engineering team, build
+                            resilient
+                            backend architectures, or consult on a new project, my inbox is always open.
+                        </p>
 
-                    <!-- Skill Card 3: Architecture & Workflow -->
-                    <div class="col-lg-4 col-md-12">
-                        <div class="glass-card skill-category-card">
-                            <div class="skill-category-icon">
-                                <i class="fas fa-diagram-project"></i>
-                            </div>
-                            <h3 class="h5 mb-2">Architecture & Process</h3>
-                            <p class="text-muted small mb-3">Engineering methodologies ensuring high resilience, testability, and velocity.</p>
-                            <div>
-                                <div class="checklist-item">
-                                    <span class="check-icon-wrap"><i class="fas fa-check-circle"></i></span>
-                                    <span><strong>API Design:</strong> RESTful APIs, contract testing & seamless documentation</span>
-                                </div>
-                                <div class="checklist-item">
-                                    <span class="check-icon-wrap"><i class="fas fa-check-circle"></i></span>
-                                    <span><strong>Clean Architecture:</strong> SOLID principles, separation of concerns & modularity</span>
-                                </div>
-                                <div class="checklist-item">
-                                    <span class="check-icon-wrap"><i class="fas fa-check-circle"></i></span>
-                                    <span><strong>Testing:</strong> Unit & feature test suites for stable deployments</span>
-                                </div>
-                                <div class="checklist-item">
-                                    <span class="check-icon-wrap"><i class="fas fa-check-circle"></i></span>
-                                    <span><strong>Git Flow & CI/CD:</strong> Structured branches, pull request reviews & staging</span>
-                                </div>
-                                <div class="checklist-item">
-                                    <span class="check-icon-wrap"><i class="fas fa-check-circle"></i></span>
-                                    <span><strong>Agile & Scrum:</strong> Cross-functional collaboration, sprints & stakeholder alignment</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================================================
-             Education Section
-             ========================================================================== -->
-        <section class="section-wrapper" id="education">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Academic Background</span>
-                    <h2 class="section-title">Education</h2>
-                </div>
-
-                <div class="glass-card education-card">
-                    <div class="edu-icon-wrap">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-2">
-                            <div>
-                                <h3 class="h4 mb-1">Bachelor of Science in Computer Engineering</h3>
-                                <div class="fw-semibold text-primary" style="color: var(--accent-indigo) !important;">
-                                    Islamic Azad University
-                                </div>
-                            </div>
-                            <span class="exp-meta-badge exp-meta-date mt-2 mt-md-0">
-                                <i class="far fa-calendar-alt"></i> 2008 - 2012
+                        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+                            <a href="mailto:salimipouya@outlook.com"
+                                class="rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-[color:var(--bg)] transition-opacity hover:opacity-85">
+                                Send direct email
+                            </a>
+                            <span
+                                class="inline-flex items-center gap-2 rounded-lg border border-line px-4 py-2.5 font-mono text-sm text-ink-dim">
+                                salimipouya@outlook.com
+                                <button id="copyEmailBtn" type="button" aria-label="Copy email"
+                                    class="flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                    <svg class="copy-icon h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                    </svg>
+                                    <span class="copy-label">Copy</span>
+                                </button>
                             </span>
                         </div>
-                        <p class="text-secondary mb-0">
-                            Comprehensive study of computer systems, software engineering principles, algorithms, data structures, and computer architecture.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ==========================================================================
-             Interests Section
-             ========================================================================== -->
-        <section class="section-wrapper" id="interests">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Passions & Hobbies</span>
-                    <h2 class="section-title">Beyond the Terminal</h2>
-                    <p class="section-subtitle">
-                        What keeps me curious, motivated, and inspired outside of everyday software engineering.
-                    </p>
-                </div>
-
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="glass-card interest-card">
-                            <div class="interest-icon-wrap">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <h3 class="h5 mb-2">Tech Tinkerer</h3>
-                            <p class="text-secondary mb-0">
-                                Tech tinkerer at heart. I love taking apart gadgets and discovering how they tick. Both the physical mechanics and the electrical magic that make hardware work fascinate me, inspiring a deeper appreciation for the interplay between hardware and code.
-                            </p>
+                        <!-- Socials -->
+                        <div class="mt-8 flex items-center justify-center gap-2">
+                            <a href="https://linkedin.com/in/pouyasalimi" target="_blank" rel="noopener noreferrer"
+                                title="LinkedIn" aria-label="LinkedIn"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/pouyasalimi" target="_blank" rel="noopener noreferrer"
+                                title="GitHub" aria-label="GitHub"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .3z" />
+                                </svg>
+                            </a>
+                            <a href="https://twitter.com/pouya" target="_blank" rel="noopener noreferrer"
+                                title="X (Twitter)" aria-label="X (Twitter)"
+                                class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-mute transition-colors hover:border-line-strong hover:text-ink">
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z" />
+                                </svg>
+                            </a>
                         </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="glass-card interest-card">
-                            <div class="interest-icon-wrap">
-                                <i class="fas fa-compass"></i>
-                            </div>
-                            <h3 class="h5 mb-2">Knowledge Adventurer</h3>
-                            <p class="text-secondary mb-0">
-                                Lifelong learner on a continuous quest for new skills and deep understanding. Whether diving into rigorous technical research, or exploring the frontiers of artificial intelligence, data science, and decentralized architectures, I am constantly fueling my curiosity.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================================================
-             Contact / CTA Section
-             ========================================================================== -->
-        <section class="section-wrapper" id="contact">
-            <div class="container">
-                <div class="cta-banner">
-                    <span class="status-badge mb-3">
-                        <span class="status-dot"></span> Get in Touch
-                    </span>
-                    <h2 class="section-title mb-3">Let's Build Something Exceptional</h2>
-                    <p class="text-secondary mx-auto" style="max-width: 580px;">
-                        Whether you are looking for a Senior Software Engineer to lead an engineering team, build resilient backend architectures, or consult on a new project, my inbox is always open.
-                    </p>
-
-                    <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-4">
-                        <div class="contact-email-box mt-0">
-                            <i class="fas fa-envelope text-primary"></i>
-                            <span class="contact-email-text">pouya@salimi.info</span>
-                            <button id="copyEmailBtn" class="btn-copy-email" type="button">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <a href="mailto:pouya@salimi.info" class="btn btn-primary-gradient">
-                            <i class="fas fa-paper-plane"></i> Send Direct Email
-                        </a>
-                    </div>
-
-                    <div class="social-group justify-content-center mt-4">
-                        <a class="social-link-btn" href="https://linkedin.com/in/pouyasalimi" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="social-link-btn" href="https://github.com/pouyasalimi" target="_blank" rel="noopener noreferrer" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a class="social-link-btn" href="https://twitter.com/pouya" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -564,26 +758,20 @@
     <!-- ==========================================================================
          Footer
          ========================================================================== -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-                <div>
-                    <span>&copy; 2024–2026 <strong>Pouya Salimi (پویا سلیمی)</strong>. All rights reserved.</span>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <span class="small">Hosted on GitHub Pages</span>
-                    <a href="#page-top" class="back-to-top-btn" title="Back to top" aria-label="Back to top">
-                        <i class="fas fa-chevron-up"></i>
-                    </a>
-                </div>
+    <footer class="border-t border-line px-6 py-8">
+        <div
+            class="mx-auto flex max-w-content flex-col items-center justify-between gap-3 text-sm text-ink-mute md:flex-row">
+            <p>&copy; 2024–<span id="currentYear">2026</span> <strong class="font-semibold text-ink-dim">Pouya
+                    Salimi</strong> <span class="font-vazir" dir="rtl">(پویا سلیمی)</span>. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <span class="font-mono text-xs">Hosted on GitHub Pages</span>
+                <a href="#page-top" class="font-mono text-xs text-accent transition-opacity hover:opacity-75"
+                    aria-label="Back to top">↑ top</a>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5.3 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
-    <!-- Interactive Scripts -->
     <script src="js/scripts.js"></script>
 </body>
+
 </html>

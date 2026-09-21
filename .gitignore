@@ -2,3 +2,5 @@
 .DS_Store
 *.log
 css/styles.legacy.css
+node_modules/
+dist/
